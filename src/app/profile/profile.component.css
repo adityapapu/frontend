@@ -1,0 +1,31 @@
+
+
+img{
+    border-radius: 50%;
+    border: 2px solid black;
+}
+
+.profile-main{
+    border-right: 5px dashed black;
+}
+
+.detail{
+    color: #000;
+}
+
+.detail-container{
+    color: #000000;
+    text-transform: capitalize;
+}
+
+input{
+    font-family: cursive;
+    font-size: large;
+    border: none;
+}
+select{
+    font-family: cursive;
+    font-size: large;
+    border: none;
+
+}

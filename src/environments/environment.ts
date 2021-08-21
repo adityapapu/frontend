@@ -5,7 +5,7 @@
 export const environment = {
   production: false
 };
-export const BaseURL="http://127.0.0.1:2000/api/";
+export const BaseURL="http://127.0.0.1:2000/users/";
 export const UserDetails={};
 /*
  * For easier debugging in development mode, you can import the following file

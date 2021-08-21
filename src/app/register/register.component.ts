@@ -39,8 +39,11 @@ export class RegisterComponent{
     }
   }
   constructor(private authService: AuthServiceService,private router: Router) {}
-
-
+  ngOnInit(): void {
+    if(localStorage.getItem('token') != null) {
+      this.router.navigate(['home']);
+    }
+}
 
 
 

@@ -23,8 +23,16 @@ export class LoginComponent implements OnInit {
         console.log(result.success);
         if(result.success) {
           alert('Your login sucessfully')
-          // this.loginForm.reset();
-          // this.router.navigate(['/login']);
+          localStorage.setItem('firstName', result.data.firstName);
+          localStorage.setItem('lastName', result.data.lastName);
+          localStorage.setItem('phone', result.data.phone);
+          localStorage.setItem('id', result.data.id);
+          localStorage.setItem('gender', result.data.gender);
+          localStorage.setItem('token', result.data.token);
+          localStorage.setItem('email', result.data.email);
+
+
+          this.router.navigate(['home']);
           // UserDetails=result.data;
         }
         else {
@@ -37,6 +45,9 @@ export class LoginComponent implements OnInit {
   }
   constructor(private authService: AuthServiceService,private router: Router) {}
     ngOnInit(): void {
+      if(localStorage.getItem('token') != null) {
+        this.router.navigate(['home']);
+      }
   }
 
 }

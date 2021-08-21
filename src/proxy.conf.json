@@ -1,5 +1,5 @@
 {
-    "/api/*": {
+    "/users/*": {
         "target": "http://127.0.0.1:2000",
         "secure": false,
         "logLevel": "debug"

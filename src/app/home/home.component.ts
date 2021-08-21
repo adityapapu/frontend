@@ -10,6 +10,8 @@ export class HomeComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    console.log(localStorage.getItem('key'));
+
   }
 
 }

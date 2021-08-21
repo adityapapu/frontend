@@ -9,6 +9,8 @@ import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ProfileComponent } from './profile/profile.component';
+import { NavbarComponent } from './navbar/navbar.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +18,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     RegisterComponent,
     LoginComponent,
     HomeComponent,
+    ProfileComponent,
+    NavbarComponent,
   ],
   imports: [
     BrowserModule,
@@ -26,6 +30,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ReactiveFormsModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  exports: [
+    NavbarComponent
+  ]
 })
 export class AppModule { }
