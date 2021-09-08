@@ -39,6 +39,8 @@ export class LoginComponent implements OnInit {
           alert(result.message);
           console.log('you enter a wrong password / email combination');
         }
+      }, error => {
+        alert(error.error.message)
       });
     }
 

@@ -19,10 +19,16 @@ export class AuthServiceService {
     return this.http.post(`${BaseURL}authenticate`, data);
   }
   updateProfile(data: any):Observable<any> {
+    if(!Boolean(data.password))
+    {
+      delete data.password;
+      console.log("delete password field");
+    }
     const headers= new HttpHeaders({ 'Content-Type': 'application/json',
       'Authorization': 'Bearer ' + localStorage.getItem('token') });
-    return this.http.patch(`${BaseURL}users`, data,{headers: headers});
+    return this.http.put(`${BaseURL}current`, data,{headers: headers});
   }
+
   getProfile(data: any):Observable<any> {
     const headers= new HttpHeaders({
       'Authorization': 'Bearer ' + localStorage.getItem('token') });

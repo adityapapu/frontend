@@ -35,7 +35,9 @@ export class RegisterComponent{
           alert(result.message);
           console.log('failed');
         }
-      });
+      },(error) => {
+        alert(error.error.message);
+    });
     }
   }
   constructor(private authService: AuthServiceService,private router: Router) {}

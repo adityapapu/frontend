@@ -6,8 +6,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
+  firstName=localStorage.getItem('firstName');
 
   constructor() { }
+  getName()
+  {
+    return localStorage.getItem('firstName');
+  }
+
 
   ngOnInit(): void {
     console.log(localStorage.getItem('key'));

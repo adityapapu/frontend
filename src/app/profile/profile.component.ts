@@ -9,23 +9,21 @@ import { AuthServiceService } from '../auth-service.service';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
+  fullName=""
+  thumbUrl="assets/face.png"
   profileForm = new FormGroup({
-    firstName: new FormControl(localStorage.getItem('firstName'),Validators.required),
-    lastName: new FormControl(localStorage.getItem('lastName'),Validators.required),
-    email: new FormControl(localStorage.getItem('email'),[Validators.required,Validators.email]),
+    firstName: new FormControl("",Validators.required),
+    lastName: new FormControl("",Validators.required),
+    email: new FormControl("",[Validators.required,Validators.email]),
     password: new FormControl('',Validators.required),
-    gender: new FormControl(localStorage.getItem('gender'),Validators.required),
-    phone: new FormControl(localStorage.getItem('phone'),Validators.required),
+    gender: new FormControl("",Validators.required),
+    phone: new FormControl("",Validators.required),
     id:new FormControl(localStorage.getItem('id'))
   });
   onUpdate(){
     this.authService.updateProfile(this.profileForm.value).subscribe(
       data => {
-        localStorage.setItem('firstName',this.profileForm.value.firstName);
-        localStorage.setItem('lastName',this.profileForm.value.lastName);
-        localStorage.setItem('email',this.profileForm.value.email);
-        localStorage.setItem('gender',this.profileForm.value.gender);
-        localStorage.setItem('phone',this.profileForm.value.phone);
+        this.profileForm.patchValue({password:""})
         if(data.success) {
           alert('Your account has been update successfully')
           console.log('success');
@@ -52,7 +50,7 @@ export class ProfileComponent implements OnInit {
       result => {
         if(result.success) {
           console.log('success');
-          this.profileForm.setValue({
+          this.profileForm.patchValue({
             firstName: result.data.firstName,
             lastName: result.data.lastName,
             email: result.data.email,
@@ -60,7 +58,8 @@ export class ProfileComponent implements OnInit {
             id: result.data.id,
             gender: result.data.gender
           })
-
+          localStorage.setItem('firstName',result.data.firstName);
+          
         }
         else {
           alert(result.message);
@@ -70,13 +69,21 @@ export class ProfileComponent implements OnInit {
         
       })
     
+    this.profileForm.valueChanges.subscribe(
+      data => {
+        this.fullName=data.firstName+" "+data.lastName
+        if(data.gender!="Others")
+        {
+        this.thumbUrl="https://fakeface.rest/thumb/view?gender="+data.gender.toLowerCase()+"&maximum_age=25&minimum_age=15"
+        }
+        else
+        {
+          this.thumbUrl="assets/face.png"
 
+        }
 
-    console.log(localStorage.getItem('email'));
-    console.log(localStorage.getItem('id'));
-    console.log(localStorage.getItem('name'));
-    console.log(localStorage.getItem('token'));
-
+      }
+    )
 
   }
 

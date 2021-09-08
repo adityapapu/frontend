@@ -29,3 +29,7 @@ select{
     border: none;
 
 }
+
+.changable-img{
+    max-height: 200px;
+}
